@@ -2,7 +2,7 @@ import 'package:bora_rachar/components/inputFilds.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 
 
 class QuotaCalc extends StatefulWidget {
@@ -66,11 +66,11 @@ class _QuotaCalcState extends State<QuotaCalc> {
   }
 
   void share_valor(){
-     Share.share('Você foi intimado a pagar sua parte do racha no valor de: '+ widget.quote_valor + ' reais');
+     Share.share('share_text'.tr().toString() + widget.quote_valor + 'share_text_complement'.tr().toString());
   }
 
   Future speach_racha() async {
-    await widget.flutterTts.speak('Você foi intimado a pagar sua parte do racha no valor de: '+ widget.quote_valor + ' reais');
+    await widget.flutterTts.speak('share_text'.tr().toString() + widget.quote_valor + 'share_text_complement'.tr().toString());
   }
 
   @override
@@ -78,9 +78,9 @@ class _QuotaCalcState extends State<QuotaCalc> {
 
 
 
-    NumericInput number_people = new NumericInput('Número de pessoas', onChangePeople);
+    NumericInput number_people = new NumericInput('people'.tr().toString(), onChangePeople);
 
-    NumericInput price = new NumericInput('Preço', onChangePrice);
+    NumericInput price = new NumericInput('price'.tr().toString(), onChangePrice);
 
 
     return Column(
@@ -126,7 +126,7 @@ class _QuotaCalcState extends State<QuotaCalc> {
         Expanded(child:Center(
 
           child: Text(
-              "Valor do racha: " + widget.quote_valor + ' reais',
+              "racha_text".tr().toString() + widget.quote_valor + 'share_text_complement'.tr().toString(),
           style: TextStyle(
 
             color: Colors.blueAccent,
