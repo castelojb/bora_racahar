@@ -77,110 +77,241 @@ class _QuotaCalcState extends State<QuotaCalc> {
   Widget build(BuildContext context) {
 
 
+    NumericInput people_input = new NumericInput('people'.tr().toString(), onChangePeople);
 
-    NumericInput number_people = new NumericInput('people'.tr().toString(), onChangePeople);
-
-    NumericInput price = new NumericInput('price'.tr().toString(), onChangePrice);
-
-
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      mainAxisSize: MainAxisSize.min,
-
-      children: <Widget>[
+    NumericInput price_input = new NumericInput('price'.tr().toString(), onChangePrice);
 
 
-        Flexible(child: Row(
-          children: [
+    Widget _make_screen_v(){
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisSize: MainAxisSize.min,
 
-            Expanded(child: Icon(
-              Icons.monetization_on,
-              size: 50,
-              color: Colors.blueAccent,),
-            ),
+        children: <Widget>[
 
-            Expanded(
-              child: price,
-              flex: 2,
-            ),
 
-          ],
-        ),
-        ),
-        Flexible(child: Row(
-          children: [
-            Expanded(
-              child: Icon(
-                Icons.people,
+          Flexible(child: Row(
+            children: [
+
+              Expanded(child: Icon(
+                Icons.monetization_on,
                 size: 50,
-                color: Colors.blueAccent,
+                color: Colors.blueAccent,),
               ),
-            ),
-            Expanded(
-              child: number_people,
-              flex: 2,
-            ),
-          ],
-        ),
-        ),
-        Expanded(child:Center(
 
-          child: Text(
+              Expanded(
+                child: price_input,
+                flex: 2,
+              ),
+
+            ],
+          ),
+          ),
+          Flexible(child: Row(
+            children: [
+              Expanded(
+                child: Icon(
+                  Icons.people,
+                  size: 50,
+                  color: Colors.blueAccent,
+                ),
+              ),
+              Expanded(
+                child: people_input,
+                flex: 2,
+              ),
+            ],
+          ),
+          ),
+          Expanded(child:Center(
+
+            child: Text(
               "racha_text".tr().toString() + widget.quote_valor + 'share_text_complement'.tr().toString(),
-          style: TextStyle(
+              style: TextStyle(
 
-            color: Colors.blueAccent,
-            fontSize: 25,
+                color: Colors.blueAccent,
+                fontSize: 25,
 
-          ),
-          ),
-        )
-        ),
-
-        Flexible(
-          child: Row(
-            children:[
-             Expanded(child:Material(
-
-                child: Center(
-                  child: Ink(
-                    decoration: const ShapeDecoration(
-                      color: Colors.blueAccent,
-                      shape: CircleBorder()
-                    ),
-                    child: IconButton(
-                      icon: Icon(Icons.share),
-                      color: Colors.white,
-                      onPressed: share_valor,
-                    ),
-                  ),
-                ),
               ),
-             ),
+            ),
+          )
+          ),
 
-              Expanded(child:Material(
+          Flexible(
+            child: Row(
+              children:[
+                Expanded(child:Material(
 
-                child: Center(
-                  child: Ink(
-                    decoration: const ShapeDecoration(
-                        color: Colors.blueAccent,
-                        shape: CircleBorder()
-                    ),
-                    child: IconButton(
-                      icon: Icon(Icons.multitrack_audio),
-                      color: Colors.white,
-                      onPressed: speach_racha,
+                  child: Center(
+                    child: Ink(
+                      decoration: const ShapeDecoration(
+                          color: Colors.blueAccent,
+                          shape: CircleBorder()
+                      ),
+                      child: IconButton(
+                        icon: Icon(Icons.share),
+                        color: Colors.white,
+                        onPressed: share_valor,
+                      ),
                     ),
                   ),
                 ),
+                ),
+
+                Expanded(child:Material(
+
+                  child: Center(
+                    child: Ink(
+                      decoration: const ShapeDecoration(
+                          color: Colors.blueAccent,
+                          shape: CircleBorder()
+                      ),
+                      child: IconButton(
+                        icon: Icon(Icons.multitrack_audio),
+                        color: Colors.white,
+                        onPressed: speach_racha,
+                      ),
+                    ),
+                  ),
+                ),
+                ),
+              ],
+            ),
+          ),
+
+
+        ],
+      );
+    }
+
+    Widget _make_screen_h(){
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Expanded(child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Expanded(
+
+                child: Row(
+                children: [
+
+                  Expanded(child: Icon(
+                    Icons.monetization_on,
+                    size: 50,
+                    color: Colors.blueAccent,),
+                  ),
+
+                  Expanded(
+                    child: price_input,
+                    flex: 2,
+                  ),
+
+                ],
+              ),
+              ),
+              Expanded(child: Row(
+                children: [
+                  Expanded(
+                    child: Icon(
+                      Icons.people,
+                      size: 50,
+                      color: Colors.blueAccent,
+                    ),
+                  ),
+                  Expanded(
+                    child: people_input,
+                    flex: 2,
+                  ),
+                ],
               ),
               ),
             ],
           ),
-        ),
+          ),
+          Expanded(child: Column(
 
+            children: [
+              Expanded(child:Center(
 
-      ],
+                child: Text(
+                  "racha_text".tr().toString() + widget.quote_valor + 'share_text_complement'.tr().toString(),
+                  style: TextStyle(
+
+                    color: Colors.blueAccent,
+                    fontSize: 25,
+
+                  ),
+                ),
+              )
+              ),
+              Flexible(
+                child: Row(
+                  children:[
+                    Expanded(child:Material(
+
+                      child: Center(
+                        child: Ink(
+                          decoration: const ShapeDecoration(
+                              color: Colors.blueAccent,
+                              shape: CircleBorder()
+                          ),
+                          child: IconButton(
+                            icon: Icon(Icons.share),
+                            color: Colors.white,
+                            onPressed: share_valor,
+                          ),
+                        ),
+                      ),
+                    ),
+                    ),
+
+                    Expanded(child:Material(
+
+                      child: Center(
+                        child: Ink(
+                          decoration: const ShapeDecoration(
+                              color: Colors.blueAccent,
+                              shape: CircleBorder()
+                          ),
+                          child: IconButton(
+                            icon: Icon(Icons.multitrack_audio),
+                            color: Colors.white,
+                            onPressed: speach_racha,
+                          ),
+                        ),
+                      ),
+                    ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          )
+        ],
+      );
+    }
+
+    Widget _make_rotation(){
+      Orientation orientation = MediaQuery.of(context).orientation;
+
+      if (orientation == Orientation.portrait){
+        return _make_screen_h();
+      } else{
+        return _make_screen_v();
+      }
+    }
+    return OrientationBuilder(
+      builder: (context, orientation){
+        if(orientation == Orientation.portrait){
+          return _make_screen_v();
+        }else{
+          return _make_screen_h();
+        }
+      },
     );
   }
 }
