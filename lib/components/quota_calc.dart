@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
 
 
 class QuotaCalc extends StatefulWidget {
@@ -22,6 +23,31 @@ class QuotaCalc extends StatefulWidget {
 }
 
 class _QuotaCalcState extends State<QuotaCalc> {
+  AssetsAudioPlayer _assetsAudioPlayer;
+
+  NumericInput people_input;
+
+  NumericInput price_input;
+
+
+
+  @override
+  void initState() {
+    super.initState();
+
+    people_input = new NumericInput('people'.tr().toString(), onChangePeople);
+
+    price_input = new NumericInput('price'.tr().toString(), onChangePrice);
+
+    _assetsAudioPlayer = AssetsAudioPlayer();
+    _assetsAudioPlayer.open(
+        Audio('resorces/music/back_music.mp3'),
+        autoStart: false,
+
+    );
+
+    //_assetsAudioPlayer.playOrPause();
+  }
 
    void calcQuote(){
 
@@ -76,10 +102,6 @@ class _QuotaCalcState extends State<QuotaCalc> {
   @override
   Widget build(BuildContext context) {
 
-
-    NumericInput people_input = new NumericInput('people'.tr().toString(), onChangePeople);
-
-    NumericInput price_input = new NumericInput('price'.tr().toString(), onChangePrice);
 
 
     Widget _make_screen_v(){
@@ -295,17 +317,15 @@ class _QuotaCalcState extends State<QuotaCalc> {
       );
     }
 
-    Widget _make_rotation(){
-      Orientation orientation = MediaQuery.of(context).orientation;
 
-      if (orientation == Orientation.portrait){
-        return _make_screen_h();
-      } else{
-        return _make_screen_v();
-      }
-    }
     return OrientationBuilder(
       builder: (context, orientation){
+
+        if (MediaQuery.of(context).size.width > 600) {
+          //const isLargeScreen = true;
+          _assetsAudioPlayer.playOrPause();
+        }
+
         if(orientation == Orientation.portrait){
           return _make_screen_v();
         }else{
